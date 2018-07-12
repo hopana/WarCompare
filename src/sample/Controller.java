@@ -5,33 +5,38 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML
-    public Button myButton;
+    public TextField oldWarPath;
     @FXML
-    public TextField myTextField;
+    public TextField newWarPath;
+    @FXML
+    public Button chooseOldWar;
+    @FXML
+    public Button chooseNewWar;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO (don't really need to do anything here).
     }
 
-    public void showDateTime(ActionEvent event) {
-        System.out.println("Button Clicked!");
+    public void chooseOldWar(ActionEvent event) {
+        FileChooser oldWarChooser = new FileChooser();
+        oldWarChooser.setTitle("选择旧war包");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("war文件", "*.war");
+        oldWarChooser.setSelectedExtensionFilter(extensionFilter);
+        File file = oldWarChooser.showOpenDialog(null);
+        System.out.println(file.getAbsolutePath());
+    }
 
-        Date now= new Date();
-
-        DateFormat df = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
-        String dateTimeString = df.format(now);
-        // Show in VIEW
-        myTextField.setText(dateTimeString);
+    public void chooseNewWar(ActionEvent event) {
 
     }
+
 }
