@@ -2,6 +2,7 @@ package com.wft.controller;
 
 import com.wft.util.WarDiff;
 import com.wft.vo.CompareResult;
+import com.wft.vo.FileVo;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +35,7 @@ public class MainController implements Initializable {
     @FXML
     public Button generateButton;
     @FXML
-    public TableView compareResult;
+    public TableView<FileVo> compareResult;
     @FXML
     public Label compareResultLabel;
 
@@ -79,16 +80,15 @@ public class MainController implements Initializable {
         List<String> modifiedFileList = result.getModifiedFileList();
         List<String> addedFileList = result.getAddedFileList();
 
-        ObservableList<TableColumn> observableList = compareResult.getColumns();
-
-        observableList.get(0).setCellValueFactory(new PropertyValueFactory("fileName"));
-        observableList.get(1).setCellValueFactory(new PropertyValueFactory("filePath"));
-        observableList.get(2).setCellValueFactory(new PropertyValueFactory("fileStatus"));
+        ObservableList<TableColumn<FileVo, ?>> columns = compareResult.getColumns();
+        columns.get(0).setCellValueFactory(new PropertyValueFactory("fileName"));
+        columns.get(1).setCellValueFactory(new PropertyValueFactory("filePath"));
+        columns.get(2).setCellValueFactory(new PropertyValueFactory("fileStatus"));
 
         for (String deletedFile : deletedFileList) {
             System.out.println(deletedFile);
             //observableList.add(new String[]{deletedFile.substring(deletedFile.lastIndexOf("/") + 1), "deletedFile", "已删除"});
-            observableList.add(new TableColumn("1111"));
+            //observableList.add(new TableColumn("1111"));
         }
 
         compareResult.setItems(observableList);
