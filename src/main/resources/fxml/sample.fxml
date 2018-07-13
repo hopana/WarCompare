@@ -1,7 +1,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<VBox fx:controller="sample.Controller" prefHeight="675.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="com.wft.controller.MainController" prefHeight="675.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane prefHeight="675.0" prefWidth="1120.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
 
         <TextField fx:id="oldWarPath" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="400.0" promptText="选择旧war包" editable="false"/>
