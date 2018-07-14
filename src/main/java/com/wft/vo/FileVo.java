@@ -11,6 +11,12 @@ public class FileVo {
     private String filePath;
     private String fileStatus;
 
+    public FileVo(String fileName, String filePath, String fileStatus) {
+        this.fileName = fileName;
+        this.filePath = filePath;
+        this.fileStatus = fileStatus;
+    }
+
     public String getFileName() {
         return fileName;
     }

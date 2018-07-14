@@ -1,16 +1,27 @@
 package com.wft.controller;
 
+import com.wft.util.DateUtils;
+import com.wft.util.FileUtil;
+import com.wft.util.PatchGenerator;
 import com.wft.util.WarDiff;
 import com.wft.vo.CompareResult;
 import com.wft.vo.FileVo;
+import com.wft.vo.ResultVo;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
+import org.apache.commons.lang.StringUtils;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -35,9 +46,29 @@ public class MainController implements Initializable {
     @FXML
     public Button generateButton;
     @FXML
-    public TableView<FileVo> compareResult;
+    public TableView<FileVo> resultTable;
     @FXML
-    public Label compareResultLabel;
+    public Label deleteCountLabel;
+    @FXML
+    public Label modifyCountLabel;
+    @FXML
+    public Label addCountLabel;
+    @FXML
+    public HBox resultBox;
+    @FXML
+    public Label productionWarNameLabel;
+    @FXML
+    public TextField productionWarName;
+    @FXML
+    TableColumn<FileVo, String> fileNameCol;
+    @FXML
+    TableColumn<FileVo, String> filePathCol;
+    @FXML
+    TableColumn<FileVo, String> fileStatusCol;
+    @FXML
+    public Label resultLabel;
+
+    private CompareResult result;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,33 +99,101 @@ public class MainController implements Initializable {
 
 
     public void compare(ActionEvent actionEvent) throws IOException {
-        System.out.println("compare");
-
         WarDiff warDiff = new WarDiff(oldWarPath.getText(), newWarPath.getText());
-        CompareResult result = warDiff.compare();
+        result = warDiff.compare();
         if (!result.isSuccess()) {
             new AlertBox().display("提示", "对比失败");
+            return;
         }
 
         List<String> deletedFileList = result.getDeletedFileList();
         List<String> modifiedFileList = result.getModifiedFileList();
         List<String> addedFileList = result.getAddedFileList();
 
-        ObservableList<TableColumn<FileVo, ?>> columns = compareResult.getColumns();
-        columns.get(0).setCellValueFactory(new PropertyValueFactory("fileName"));
-        columns.get(1).setCellValueFactory(new PropertyValueFactory("filePath"));
-        columns.get(2).setCellValueFactory(new PropertyValueFactory("fileStatus"));
+        fileNameCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
+        filePathCol.setCellValueFactory(new PropertyValueFactory<>("filePath"));
+        fileStatusCol.setCellValueFactory(new PropertyValueFactory<>("fileStatus"));
 
+        ObservableList<FileVo> observableList = FXCollections.observableArrayList();
         for (String deletedFile : deletedFileList) {
-            System.out.println(deletedFile);
-            //observableList.add(new String[]{deletedFile.substring(deletedFile.lastIndexOf("/") + 1), "deletedFile", "已删除"});
-            //observableList.add(new TableColumn("1111"));
+            observableList.add(new FileVo(deletedFile.substring(deletedFile.lastIndexOf("/") + 1), deletedFile, "删除"));
         }
 
-        compareResult.setItems(observableList);
+        for (String deletedFile : modifiedFileList) {
+            observableList.add(new FileVo(deletedFile.substring(deletedFile.lastIndexOf("/") + 1), deletedFile, "修改"));
+        }
+
+        for (String deletedFile : addedFileList) {
+            observableList.add(new FileVo(deletedFile.substring(deletedFile.lastIndexOf("/") + 1), deletedFile, "新增"));
+        }
+
+        setResultInfo(deletedFileList.size(), modifiedFileList.size(), addedFileList.size());
+
+        resultTable.setItems(observableList);
+    }
+
+    private void setResultInfo(int deleteCount, int modifyCount, int addCount) {
+        resultLabel.setText("对比结果：");
+
+        Label deleteLabel = new Label("删除");
+        deleteLabel.setPrefHeight(30);
+        Label deleteCountLabel = new Label("" + deleteCount);
+        deleteCountLabel.setPrefHeight(30);
+        deleteCountLabel.setTextFill(Paint.valueOf("RED"));
+        deleteCountLabel.setFont(new Font(20));
+
+        Label modifyLabel = new Label("修改");
+        modifyLabel.setPrefHeight(30);
+        Label modifyCountLabel = new Label("" + modifyCount);
+        modifyCountLabel.setPrefHeight(30);
+        modifyCountLabel.setTextFill(Paint.valueOf("#0066cc"));
+        modifyCountLabel.setFont(new Font(20));
+
+        Label addLabel = new Label("新增");
+        addLabel.setPrefHeight(30);
+        Label addCountLabel = new Label("" + addCount);
+        addCountLabel.setPrefHeight(30);
+        addCountLabel.setTextFill(Paint.valueOf("#6a00d5"));
+        addCountLabel.setFont(new Font(20));
+
+        resultBox.getChildren().addAll(deleteLabel, deleteCountLabel, modifyLabel, modifyCountLabel, addLabel, addCountLabel);
+        HBox.setMargin(deleteCountLabel, new Insets(0, 0, 0, 1));
+        HBox.setMargin(modifyLabel, new Insets(0, 0, 0, 7));
+        HBox.setMargin(modifyCountLabel, new Insets(0, 0, 0, 1));
+        HBox.setMargin(addLabel, new Insets(0, 0, 0, 7));
+        HBox.setMargin(addCountLabel, new Insets(0, 0, 0, 1));
     }
 
     public void generate(ActionEvent actionEvent) {
+        if (StringUtils.isBlank(productionWarName.getText())) {
+            new AlertBox().display("提示", "请输入生产环境war包名称");
+            return;
+        }
 
+
+        result.setProductionWarName(productionWarName.getText());
+        PatchGenerator generator = new PatchGenerator(result, MainController.class.getResource("/templates/").getPath());
+        ResultVo result = generator.generate();
+
+        if (!result.isSuccess()) {
+            new AlertBox().display("提示", "对比失败");
+            return;
+        }
+
+        FileChooser fileSaver = new FileChooser();
+        fileSaver.setTitle("导出补丁包");
+        fileSaver.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Zip File", "*.zip"), new FileChooser.ExtensionFilter("Allfiles", "*.*"));
+        fileSaver.setInitialDirectory(new File(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath()));
+
+        fileSaver.setInitialFileName(DateUtils.getCurrentMonthDay() + "_PATCH.zip");
+        File targetFile = fileSaver.showSaveDialog(null);
+        if (targetFile != null) {
+            try {
+                FileUtil.copyFile(new File(result.getData().toString()), targetFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 }

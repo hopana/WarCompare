@@ -71,16 +71,16 @@ public class ResultVo<T> implements Serializable {
         return new ResultVo<O>(true, SUCCESS_CODE, msg, data);
     }
 
-    public static ResultVo fail(String msg) {
-        return new ResultVo(false, FAIL_CODE, msg);
+    public static <O> ResultVo fail(String msg) {
+        return new ResultVo<>(false, FAIL_CODE, msg);
     }
 
     public static <O> ResultVo<O> fail(String msg, O data) {
-        return new ResultVo<O>(false, FAIL_CODE, msg, data);
+        return new ResultVo<>(false, FAIL_CODE, msg, data);
     }
 
     public static <O> ResultVo build(boolean success, Integer code, String msg, O data) {
-        return new ResultVo<O>(success, code, msg, data);
+        return new ResultVo<>(success, code, msg, data);
     }
 
     public boolean isSuccess() {

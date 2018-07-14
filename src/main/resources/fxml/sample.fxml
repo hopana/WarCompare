@@ -1,5 +1,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox fx:controller="com.wft.controller.MainController" prefHeight="675.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1">
     <AnchorPane prefHeight="675.0" prefWidth="1120.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
@@ -11,16 +12,21 @@
         <Label fx:id="filterLabel" layoutX="10.0" layoutY="50.0" prefHeight="30.0" prefWidth="60.0" text="文件过滤"/>
         <TextField fx:id="filterList" layoutX="70.0" layoutY="50.0" prefHeight="30.0" prefWidth="340.0" promptText="请输入要过滤的文件，以逗号分割，如：*.txt,*.log"/>
         <Button fx:id="compareButton" layoutX="430.0" layoutY="50.0" mnemonicParsing="false" onAction="#compare" prefHeight="30.0" prefWidth="120.0" text="对比"/>
-        <Button fx:id="generateButton" layoutX="570.0" layoutY="50.0" mnemonicParsing="false" onAction="#generate" prefHeight="30.0" prefWidth="120.0" text="生成补丁包"/>
+        <Label fx:id="productionWarNameLabel" layoutX="570.0" layoutY="50.0" prefHeight="30.0" prefWidth="105.0" text="生产环境war包名称"/>
+        <TextField fx:id="productionWarName" layoutX="695.0" layoutY="50.0" prefHeight="30.0" prefWidth="275.0" promptText="请输入生产环境war包名称"/>
+        <Button fx:id="generateButton" layoutX="990.0" layoutY="50.0" mnemonicParsing="false" onAction="#generate" prefHeight="30.0" prefWidth="120.0" text="生成补丁包"/>
 
         <Separator layoutX="10.0" layoutY="100" prefHeight="1.00" prefWidth="1100.0"/>
 
-        <Label fx:id="compareResultLabel" layoutX="10.0" layoutY="110.0" prefHeight="30.0" prefWidth="60.0" text="对比结果"/>
-        <TableView fx:id="compareResult" layoutX="10.0" layoutY="150.0" prefHeight="500.0" prefWidth="1100.0">
+        <HBox fx:id="resultBox" layoutX="10.0" layoutY="110.0">
+            <Label fx:id="resultLabel" prefHeight="30.0" prefWidth="60.0" text="对比结果"/>
+        </HBox>
+
+        <TableView fx:id="resultTable" layoutX="10.0" layoutY="150.0" prefHeight="500.0" prefWidth="1100.0">
             <columns>
-                <TableColumn editable="false" resizable="false" prefWidth="220.0" sortable="false" text="文件名"/>
-                <TableColumn editable="false" resizable="false" prefWidth="770.0" sortable="false" text="文件路径"/>
-                <TableColumn editable="false" resizable="false" prefWidth="110.0" sortable="false" text="文件状态"/>
+                <TableColumn fx:id="fileNameCol" editable="false" resizable="false" prefWidth="210.0" sortable="false" text="文件名"/>
+                <TableColumn fx:id="filePathCol" editable="false" resizable="false" prefWidth="770.0" sortable="false" text="文件路径"/>
+                <TableColumn fx:id="fileStatusCol" editable="false" resizable="false" prefWidth="100.0" sortable="false" text="文件状态"/>
             </columns>
         </TableView>
     </AnchorPane>

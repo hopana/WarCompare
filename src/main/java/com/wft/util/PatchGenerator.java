@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import static com.wft.vo.ResultVo.fail;
+
 /**
  * 补丁包生成工具
  *
@@ -40,7 +42,7 @@ public class PatchGenerator {
         }
 
         if (StringUtils.isBlank(patchTemplateDir)) {
-            return ResultVo.fail("补丁模板文件路径为空");
+            return fail("补丁模板文件路径为空");
         }
 
         try {
@@ -78,7 +80,7 @@ public class PatchGenerator {
         } catch (IOException e) {
             e.printStackTrace();
             log.error("补丁文件生成异常：{}", e);
-            return ResultVo.fail("补丁生成异常");
+            return fail("补丁生成异常");
         }
     }
 

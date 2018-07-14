@@ -16,13 +16,11 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, 1120, 675));
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/logo.png")));
-        // primaryStage.setScene(new Scene(createContent()));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
         launch(args);
-        //System.out.println(Main.class.getResourceAsStream("/fxml/sample.fxml"));
     }
 }

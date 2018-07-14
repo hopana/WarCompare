@@ -19,5 +19,8 @@
         <module name="WarCompare" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="WarCompare" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
