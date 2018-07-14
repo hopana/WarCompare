@@ -170,7 +170,6 @@ public class MainController implements Initializable {
             return;
         }
 
-
         result.setProductionWarName(productionWarName.getText());
         PatchGenerator generator = new PatchGenerator(result, MainController.class.getResource("/templates/").getPath());
         ResultVo result = generator.generate();

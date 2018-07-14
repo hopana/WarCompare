@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/apply.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/backup.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/rollback.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wft/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wft/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wft/util/PatchGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wft/util/PatchGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wft/vo/FileVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wft/vo/FileVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wft/vo/ResultVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wft/vo/ResultVo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -87,13 +76,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="398" />
-          <entry key="java" value="1197" />
+          <entry key="java" value="1199" />
           <entry key="xml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1197" />
+          <entry key="JAVA" value="1199" />
           <entry key="XML" value="402" />
         </counts>
       </usages-collector>
@@ -102,12 +91,14 @@
           <entry key="ftl" value="1" />
           <entry key="fxml" value="1" />
           <entry key="java" value="19" />
+          <entry key="png" value="1" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="FTL" value="1" />
+          <entry key="Image" value="1" />
           <entry key="JAVA" value="19" />
           <entry key="XML" value="2" />
         </counts>
@@ -243,24 +234,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/javafx-src.zip!/javafx/scene/paint/Color.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1194">
-              <caret line="382" column="24" selection-start-line="382" selection-start-column="24" selection-end-line="382" selection-end-column="24" />
-              <folding>
-                <element signature="e#27414#27415#0" expanded="true" />
-                <element signature="e#27458#27459#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wft/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+            <state relative-caret-position="68">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <folding>
+                <element signature="e#728#729#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -322,13 +304,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wft/util/FreeMarkerUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wft/controller/AlertBox.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wft/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wft/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wft/vo/FileVo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/sample.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wft/vo/ResultVo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wft/util/PatchGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wft/controller/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wft/Main.java" />
       </list>
     </option>
   </component>
@@ -774,6 +756,14 @@
             </path>
             <path>
               <item name="JavaFXDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="JavaFXDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFXDemo" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
             <path>
@@ -819,7 +809,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531580041940" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1531580554977" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Workspace-wft/wft-tools/wardiff/pom.xml" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -966,17 +956,18 @@
       <workItem from="1531388344481" duration="9300000" />
       <workItem from="1531460483405" duration="15427000" />
       <workItem from="1531537750661" duration="9712000" />
-      <workItem from="1531575011965" duration="5007000" />
+      <workItem from="1531575011965" duration="5473000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50923000" />
+    <option name="totallyTimeSpent" value="51389000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1860817" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1860817" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" weight="0.3299356" />
       <window_info id="Learn" order="3" />
@@ -988,7 +979,7 @@
       <window_info id="Web" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32890365" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36378738" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36378738" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997773" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1142,9 +1133,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wft/vo/UserVo.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/javafx-src.zip!/javafx/stage/Stage.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/images/logo.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/javafx-src.zip!/javafx/scene/control/TableColumn.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactoryBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1303,10 +1291,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wft/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        <state relative-caret-position="68">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding>
+            <element signature="e#728#729#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

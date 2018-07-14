@@ -121,10 +121,7 @@ public class PatchGenerator {
 
         try {
             FreeMarkerUtil.process(patchTemplateDir, BACKUP_TEMPLATE_NAME, backupShellFile.getAbsolutePath(), dataMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("生成备份脚本异常：{}", e);
-        } catch (TemplateException e) {
+        } catch (IOException | TemplateException e) {
             e.printStackTrace();
             log.error("生成备份脚本异常：{}", e);
         }
@@ -138,10 +135,7 @@ public class PatchGenerator {
 
         try {
             FreeMarkerUtil.process(patchTemplateDir, ROLLBACK_TEMPLATE_NAME, rollbackShellFile.getAbsolutePath(), dataMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("生成回滚脚本异常：{}", e);
-        } catch (TemplateException e) {
+        } catch (IOException | TemplateException e) {
             e.printStackTrace();
             log.error("生成回滚脚本异常：{}", e);
         }
@@ -155,10 +149,7 @@ public class PatchGenerator {
 
         try {
             FreeMarkerUtil.process(patchTemplateDir, APPLY_TEMPLATE_NAME, rapplyPatchShellFile.getAbsolutePath(), dataMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("生成补丁脚本异常：{}", e);
-        } catch (TemplateException e) {
+        } catch (IOException | TemplateException e) {
             e.printStackTrace();
             log.error("生成补丁脚本异常：{}", e);
         }
