@@ -118,24 +118,24 @@ public class MainController implements Initializable {
         fileStatusCol.setCellValueFactory(new PropertyValueFactory<>("fileStatus"));
         fileStatusCol.setStyle("-fx-alignment: CENTER;");
 
-        resultTable.setRowFactory(tableView -> new TableRow<FileVo>(){
+        resultTable.setRowFactory(tableView -> new TableRow<FileVo>() {
             @Override
-            public void updateItem(FileVo item, boolean empty){
+            public void updateItem(FileVo item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (item == null || empty) {
                     setStyle("");
                 } else {
                     if ("删除".equals(item.getFileStatus())) {
-                        for(int i=0; i<getChildren().size();i++){
+                        for (int i = 0; i < getChildren().size(); i++) {
                             ((Labeled) getChildren().get(i)).setTextFill(Paint.valueOf("#d81e06"));
                         }
-                    } else if("修改".equals(item.getFileStatus())) {
-                        for(int i=0; i<getChildren().size();i++){
+                    } else if ("修改".equals(item.getFileStatus())) {
+                        for (int i = 0; i < getChildren().size(); i++) {
                             ((Labeled) getChildren().get(i)).setTextFill(Paint.valueOf("#0066cc"));
                         }
                     } else {
-                        for(int i=0; i<getChildren().size();i++){
+                        for (int i = 0; i < getChildren().size(); i++) {
                             ((Labeled) getChildren().get(i)).setTextFill(Paint.valueOf("#6a00d5"));
                         }
                     }

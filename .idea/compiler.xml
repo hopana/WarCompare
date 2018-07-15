@@ -16,10 +16,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="JavaFXDemo" />
         <module name="WarCompare" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JavaFXDemo" target="1.8" />
       <module name="WarCompare" target="1.8" />
     </bytecodeTargetLevel>
   </component>
