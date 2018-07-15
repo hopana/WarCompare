@@ -25,6 +25,8 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -47,12 +49,6 @@ public class MainController implements Initializable {
     public Button generateButton;
     @FXML
     public TableView<FileVo> resultTable;
-    @FXML
-    public Label deleteCountLabel;
-    @FXML
-    public Label modifyCountLabel;
-    @FXML
-    public Label addCountLabel;
     @FXML
     public HBox resultBox;
     @FXML
@@ -99,7 +95,14 @@ public class MainController implements Initializable {
 
 
     public void compare(ActionEvent actionEvent) throws IOException {
-        WarDiff warDiff = new WarDiff(oldWarPath.getText(), newWarPath.getText());
+        List<String> ignoreList = Collections.emptyList();
+        if (StringUtils.isNotBlank(filterList.getText())) {
+            ignoreList = Arrays.asList(filterList.getText().split(","));
+        }
+
+        //new AlertBox().wait("提示", "war包对比中，请稍后....");
+
+        WarDiff warDiff = new WarDiff(oldWarPath.getText(), newWarPath.getText(), ignoreList);
         result = warDiff.compare();
         if (!result.isSuccess()) {
             new AlertBox().display("提示", "对比失败");
@@ -113,6 +116,32 @@ public class MainController implements Initializable {
         fileNameCol.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         filePathCol.setCellValueFactory(new PropertyValueFactory<>("filePath"));
         fileStatusCol.setCellValueFactory(new PropertyValueFactory<>("fileStatus"));
+        fileStatusCol.setStyle("-fx-alignment: CENTER;");
+
+        resultTable.setRowFactory(tableView -> new TableRow<FileVo>(){
+            @Override
+            public void updateItem(FileVo item, boolean empty){
+                super.updateItem(item, empty);
+
+                if (item == null || empty) {
+                    setStyle("");
+                } else {
+                    if ("删除".equals(item.getFileStatus())) {
+                        for(int i=0; i<getChildren().size();i++){
+                            ((Labeled) getChildren().get(i)).setTextFill(Paint.valueOf("#d81e06"));
+                        }
+                    } else if("修改".equals(item.getFileStatus())) {
+                        for(int i=0; i<getChildren().size();i++){
+                            ((Labeled) getChildren().get(i)).setTextFill(Paint.valueOf("#0066cc"));
+                        }
+                    } else {
+                        for(int i=0; i<getChildren().size();i++){
+                            ((Labeled) getChildren().get(i)).setTextFill(Paint.valueOf("#6a00d5"));
+                        }
+                    }
+                }
+            }
+        });
 
         ObservableList<FileVo> observableList = FXCollections.observableArrayList();
         for (String deletedFile : deletedFileList) {
@@ -139,7 +168,7 @@ public class MainController implements Initializable {
         deleteLabel.setPrefHeight(30);
         Label deleteCountLabel = new Label("" + deleteCount);
         deleteCountLabel.setPrefHeight(30);
-        deleteCountLabel.setTextFill(Paint.valueOf("RED"));
+        deleteCountLabel.setTextFill(Paint.valueOf("#d81e06"));
         deleteCountLabel.setFont(new Font(20));
 
         Label modifyLabel = new Label("修改");
@@ -156,7 +185,8 @@ public class MainController implements Initializable {
         addCountLabel.setTextFill(Paint.valueOf("#6a00d5"));
         addCountLabel.setFont(new Font(20));
 
-        resultBox.getChildren().addAll(deleteLabel, deleteCountLabel, modifyLabel, modifyCountLabel, addLabel, addCountLabel);
+        resultBox.getChildren().retainAll();
+        resultBox.getChildren().addAll(resultLabel, deleteLabel, deleteCountLabel, modifyLabel, modifyCountLabel, addLabel, addCountLabel);
         HBox.setMargin(deleteCountLabel, new Insets(0, 0, 0, 1));
         HBox.setMargin(modifyLabel, new Insets(0, 0, 0, 7));
         HBox.setMargin(modifyCountLabel, new Insets(0, 0, 0, 1));
@@ -170,12 +200,14 @@ public class MainController implements Initializable {
             return;
         }
 
+        //new AlertBox().wait("提示", "补丁包生成中....");
+
         result.setProductionWarName(productionWarName.getText());
         PatchGenerator generator = new PatchGenerator(result, MainController.class.getResource("/templates/").getPath());
         ResultVo result = generator.generate();
 
         if (!result.isSuccess()) {
-            new AlertBox().display("提示", "对比失败");
+            new AlertBox().display("提示", "生成失败");
             return;
         }
 

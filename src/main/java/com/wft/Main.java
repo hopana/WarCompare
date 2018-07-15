@@ -14,7 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
         primaryStage.setTitle("WAR包对比工具");
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 1120, 675));
+        primaryStage.setScene(new Scene(root, 1120, 665));
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/logo.png")));
         primaryStage.show();
     }

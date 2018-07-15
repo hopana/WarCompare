@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <VBox fx:controller="com.wft.controller.MainController" prefHeight="675.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.162" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane prefHeight="675.0" prefWidth="1120.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+    <AnchorPane prefHeight="655.0" prefWidth="1120.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
 
         <TextField fx:id="oldWarPath" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="400.0" promptText="选择旧war包" editable="false"/>
         <Button fx:id="chooseOldWar" layoutX="430.0" layoutY="10.0" mnemonicParsing="false" onAction="#chooseOldWar" prefHeight="30.0" prefWidth="120.0" text="选择旧war包"/>
@@ -24,9 +24,9 @@
 
         <TableView fx:id="resultTable" layoutX="10.0" layoutY="150.0" prefHeight="500.0" prefWidth="1100.0">
             <columns>
-                <TableColumn fx:id="fileNameCol" editable="false" resizable="false" prefWidth="210.0" sortable="false" text="文件名"/>
+                <TableColumn fx:id="fileNameCol" editable="false" resizable="false" prefWidth="220.0" sortable="false" text="文件名"/>
                 <TableColumn fx:id="filePathCol" editable="false" resizable="false" prefWidth="770.0" sortable="false" text="文件路径"/>
-                <TableColumn fx:id="fileStatusCol" editable="false" resizable="false" prefWidth="100.0" sortable="false" text="文件状态"/>
+                <TableColumn fx:id="fileStatusCol" editable="false" resizable="false" prefWidth="95.0" sortable="false" text="文件状态"/>
             </columns>
         </TableView>
     </AnchorPane>
